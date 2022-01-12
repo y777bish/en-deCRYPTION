@@ -13,10 +13,10 @@ elementy::elementy(int argi, char* argj[])
 		{
 			odszyfrowywanie = true;
 		}
-		else if (string(argj[i]) == "-odbk")
+		/*else if (string(argj[i]) == "-odbk")
 		{
 			odszyfrowywanieBezKlucza = true;
-		}
+		}*/
 		else if (string(argj[i]) == "-sz")
 		{
 			szyfrowanie = true;
@@ -42,14 +42,14 @@ elementy::elementy(int argi, char* argj[])
 				nazwaKlucza = argj[++i];
 			}
 		}
-		else if (string(argj[i]) == "-e")
+		/*else if (string(argj[i]) == "-e")
 		{
 			if (i + 1 < argi)
 			{
 				nazwaPliku1 = argj[i + 1];
 				nazwaPliku2 = argj[i + 2];
 			}
-		}
+		}*/
 	}
 
 	//sprawdzanie tego co użytkownik wklepie w konsolę
@@ -103,15 +103,15 @@ void dekodowanieZkluczem(string nazwaInput, string nazwaKlucza, string nazwaOutp
 	wyjscie.open(nazwaOutput);
 
 	char aktualnyZnak;
-	int aktualnyIndeks{};
-	int aktualnyZnakAscii{};
+	int aktualnyIndeks = 0;
+	int aktualnyZnakAscii;
 
 	while (wejscie >> noskipws >> aktualnyZnak)
 	{
 		if (isalpha(aktualnyZnak))
 		{
 			int wspolczynnikPrzesuniecia = aktualnyIndeks % klucz_length;
-			char przesunietyZnak = ((char)toupper(aktualnyZnak) - kluczInt[wspolczynnikPrzesuniecia]);
+			char przesunietyZnak = ((int)toupper(aktualnyZnak) - kluczInt[wspolczynnikPrzesuniecia]);
 			if (przesunietyZnak < 65)
 			{
 				wyjscie << char(przesunietyZnak + 26);
@@ -147,9 +147,9 @@ void kodowanie(string nazwaInput, string nazwaKlucza, string nazwaOutput)
 	wyjscie.open(nazwaOutput);
 
 	char aktualnyZnak;
-	int aktualnyIndeks{};
-	int aktualnyZnakAscii{};
-	int nowaPozycja{};
+	int aktualnyIndeks = 0;
+	int aktualnyZnakAscii;
+	int nowaPozycja;
 
 	while (wejscie >> noskipws >> aktualnyZnak)
 	{
@@ -168,29 +168,32 @@ void kodowanie(string nazwaInput, string nazwaKlucza, string nazwaOutput)
 
 		aktualnyIndeks = 0;
 
-		wejscie.close();
-		wyjscie.close();
 	}
+	wejscie.close();
+	wyjscie.close();
 }
 
-void dwaPliki(string nazwaPliku1, string nazwaPliku2)
-{
-	ifstream wejscie1; //ifstream służy do odczytu danych, ofstream do zapisu danych, fstream jest uniwersalny
-	ifstream wejscie2;
-	string nowyTxtNazwa;
-
-	cout << "Wprowadz nazwe nowego pliku: " << endl;
-	cin >> nowyTxtNazwa;
-
-	ofstream nowyTxt(nowyTxtNazwa);
-
-	nowyTxt.open(nowyTxtNazwa);
-	nowyTxt << wejscie1.rdbuf() << wejscie2.rdbuf();
-	nowyTxt.close();
-}
+//void dwaPliki(string nazwaPliku1, string nazwaPliku2)
+//{
+//	ifstream wejscie1; //ifstream służy do odczytu danych, ofstream do zapisu danych, fstream jest uniwersalny
+//	ifstream wejscie2;
+//	string nowyTxtNazwa;
+//
+//	cout << "Wprowadz nazwe nowego pliku: " << endl;
+//	cin >> nowyTxtNazwa;
+//
+//	ofstream nowyTxt(nowyTxtNazwa);
+//
+//	nowyTxt.open(nowyTxtNazwa);
+//	nowyTxt << wejscie1.rdbuf() << wejscie2.rdbuf();
+//	nowyTxt.close();
+//}
 
 int main(int argi, char* argj[])
 {
+	cout << "Do zaszyfrowania wpisz -sz -nin nazwa_wejscia.txt -nk nazwa_klucza -nout nazwa_wyjscia" << endl;
+	cout << "Do odszyfrowania wpisz -od -nin nazwa_wejscia.txt -nk nazwa_klucza -nout nazwa_wyjscia" << endl;
+
 	elementy konsola(argi, argj);
 
 	if ((konsola.odszyfrowywanie && konsola.szyfrowanie) || (!konsola.odszyfrowywanie && !konsola.szyfrowanie))
@@ -206,6 +209,7 @@ int main(int argi, char* argj[])
 
 	if (konsola.szyfrowanie)
 	{
+		
 		kodowanie(konsola.nazwaInput, konsola.nazwaKlucza, konsola.nazwaOutput);
 	}
 	else if (konsola.odszyfrowywanie)
