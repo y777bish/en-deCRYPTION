@@ -46,6 +46,7 @@ elementy::elementy(int argi, char* argj[])
 		{
 			if (i + 1 < argi)
 			{
+				lacz = true;
 				nazwaPliku1 = argj[i + 1];
 				nazwaPliku2 = argj[i + 2];
 			}
@@ -165,8 +166,6 @@ void kodowanie(string nazwaInput, string nazwaKlucza, string nazwaOutput)
 			aktualnyIndeks += 1;
 		}
 		else { wyjscie << aktualnyZnak; }
-
-		aktualnyIndeks = 0;
 
 	}
 	wejscie.close();

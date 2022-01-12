@@ -11,6 +11,7 @@ public:
 	string nazwaKlucza = "";
 	string nazwaPliku1 = "";
 	string nazwaPliku2 = "";
+	bool lacz = false;
 	bool odszyfrowywanie = false;
 	bool odszyfrowywanieBezKlucza = false;
 	bool szyfrowanie = false;

@@ -1,4 +1,4 @@
 ﻿  endeCRYPTION.cpp
-C:\Users\barti\Documents\endeCRYPTION\endeCRYPTION\endeCRYPTION.cpp(86,18): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-C:\Users\barti\Documents\endeCRYPTION\endeCRYPTION\endeCRYPTION.cpp(107,6): warning C4101: "aktualnyZnakAscii": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\barti\Documents\endeCRYPTION\endeCRYPTION\endeCRYPTION.cpp(87,18): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\barti\Documents\endeCRYPTION\endeCRYPTION\endeCRYPTION.cpp(108,6): warning C4101: "aktualnyZnakAscii": lokalna zmienna, do której nie istnieje odwołanie
   endeCRYPTION.vcxproj -> C:\Users\barti\Documents\endeCRYPTION\Debug\endeCRYPTION.exe
