@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="endeCRYPTION.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="plik.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
