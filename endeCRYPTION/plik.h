@@ -3,6 +3,12 @@
 #include <string>
 using namespace std;
 
+//bool istnieje(string sciezkaPliku);
+//vector<int> uzyskajKlucz(string nazwaKlucza);
+//void dekodowanieZkluczem(string nazwaInput, string nazwaKlucza, string nazwaOutput);
+//void kodowanie(string nazwaInput, string nazwaKlucza, string nazwaOutput);
+//void dwaPliki(string nazwaPliku1, string nazwaPliku2, string nazwaPliku3);
+
 class elementy
 {
 public:
@@ -11,6 +17,7 @@ public:
 	string nazwaKlucza = "";
 	string nazwaPliku1 = "";
 	string nazwaPliku2 = "";
+	string nazwaPliku3 = "";
 	bool lacz = false;
 	bool odszyfrowywanie = false;
 	/*bool odszyfrowywanieBezKlucza = false;*/
@@ -33,7 +40,9 @@ void napis()
 	cout << ".mMMy.`   ```  `hMMh    :MMM:  yMMN:` `+NMMy  :NMMs`    ```  `yMMMy-`   `.:  :NMM+   :mMMd`      oMMM.      /NMMo              oMMN-      /MMM:   +MMMy-`   `:dMMm:   sMMy    -dMMMMMo" << endl;
 	cout << " :mMMmhhhhdms  `hMMh    :MMM:  -mMMNhhmNNMMy   +NMMmhhhhdm+   `oNMMNdhhhmNm. :NMM+    +MMMy`     oMMM.      /NMMo              oMMN-      /MMM:    +mMMNdhhhmMMNh-    sMMy     -mMMMMo" << endl;
 	cout << "  ./ydmmmmdy:   /ss/    .sso.   `ohmmds:-ss:    .+ydmmmmhy-     ./sdmmmdhs/  .oss-     +sso.     -sso`      .oss-              -sso`      .sso.     `/shmmmmdy+-      :ss:      .+sso." << endl;
-	cout << "\n \n" << endl;
-	cout << "Do zaszyfrowania wpisz -sz -nin nazwa_wejscia.txt -nk nazwa_klucza -nout nazwa_wyjscia" << endl;
-	cout << "Do odszyfrowania wpisz -od -nin nazwa_wejscia.txt -nk nazwa_klucza -nout nazwa_wyjscia" << endl;
+	cout << "\n \n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	cout << "Aby zaszyfrowaæ wpisz: -sz -nin nazwa_wejœcia.txt -nk nazwa_klucza -nout nazwa_wyjœcia" << endl;
+	cout << "Aby odszyfrowaæ z kluczem wpisz: -od -nin nazwa_wejœcia.txt -nk nazwa_klucza -nout nazwa_wyjœcia" << endl;
+	cout << "Aby po³¹czyæ dwa pliki tekstowe wpisz: -m nazwa_wejœcia1.txt nazwa_wejœcia2.txt nazwa_wyjœcia.txt" << endl;
+	cout << "\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }

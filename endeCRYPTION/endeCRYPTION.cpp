@@ -42,20 +42,20 @@ elementy::elementy(int argi, char* argj[])
 				nazwaKlucza = argj[++i];
 			}
 		}
-		else if (string(argj[i]) == "-e")
+		else if (string(argj[i]) == "-m")
 		{
 			if (i + 1 < argi)
 			{
 				lacz = true;
 				nazwaPliku1 = argj[i + 1];
 				nazwaPliku2 = argj[i + 2];
+				nazwaPliku3 = argj[i + 3];
 			}
 		}
 	}
 
 	//sprawdzanie tego co użytkownik wklepie w konsolę
 }
-
 
 bool istnieje(string sciezkaPliku)
 {
@@ -172,34 +172,39 @@ void kodowanie(string nazwaInput, string nazwaKlucza, string nazwaOutput)
 	wyjscie.close();
 }
 
-void dwaPliki(string nazwaPliku1, string nazwaPliku2)
+void dwaPliki(string nazwaPliku1, string nazwaPliku2, string nazwaPliku3)
 {
-	//ifstream wejscie1; //ifstream służy do odczytu danych, ofstream do zapisu danych, fstream jest uniwersalny
-	//ifstream wejscie2;
-	//string nowyTxtNazwa;
+	ifstream in1(nazwaPliku1);
+	ifstream in2(nazwaPliku2);
+	ofstream out(nazwaPliku3);
+	string line;
 
-	//cout << "Wprowadz nazwe nowego pliku: " << endl;
-	//cin >> nowyTxtNazwa;
+	while (getline(in1, line))
+	{
+		out << line << " ";
+	}
 
-	//ofstream nowyTxt(nowyTxtNazwa);
+	cout << " ";
 
-	//nowyTxt.open(nowyTxtNazwa);
-	//nowyTxt << wejscie1.rdbuf() << wejscie2.rdbuf(); //napisz lepszy kod!!!
-	//nowyTxt.close();
+	while (getline(in2, line))
+	{
+		out << line << " ";
+	}
 }
 
 int main(int argi, char* argj[])
 {
+	setlocale(LC_CTYPE, "Polish");
 	napis();
-
+	
 	elementy konsola(argi, argj);
 
 	if (konsola.lacz)
 	{
-		dwaPliki(konsola.nazwaPliku1, konsola.nazwaPliku2);
+		dwaPliki(konsola.nazwaPliku1, konsola.nazwaPliku2, konsola.nazwaPliku3);
 	}
 
-	if ((konsola.odszyfrowywanie && konsola.szyfrowanie) || (!konsola.odszyfrowywanie && !konsola.szyfrowanie))
+	if	((konsola.odszyfrowywanie && konsola.szyfrowanie && konsola.lacz) || (!konsola.odszyfrowywanie && !konsola.szyfrowanie && !konsola.lacz))
 	{
 		cerr << "Zle dane!" << endl;
 		return 1;
@@ -209,6 +214,7 @@ int main(int argi, char* argj[])
 		cerr << "Zle dane!" << endl;
 		return 1;
 	}
+	else { cout << "Wykonano!"; }
 
 	if (konsola.szyfrowanie)
 	{
