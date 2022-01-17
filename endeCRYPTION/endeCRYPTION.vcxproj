@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="endeCRYPTION.cpp" />
+    <ClCompile Include="funkcje.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plik.h" />

@@ -1,8 +1,5 @@
-﻿#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include "plik.h"
+﻿#include "plik.h"
+#include <iostream>
 using namespace std;
 
 elementy::elementy(int argi, char* argj[])
@@ -13,10 +10,6 @@ elementy::elementy(int argi, char* argj[])
 		{
 			odszyfrowywanie = true;
 		}
-		/*else if (string(argj[i]) == "-odbk")
-		{
-			odszyfrowywanieBezKlucza = true;
-		}*/
 		else if (string(argj[i]) == "-sz")
 		{
 			szyfrowanie = true;
@@ -54,142 +47,6 @@ elementy::elementy(int argi, char* argj[])
 		}
 	}
 
-	//sprawdzanie tego co użytkownik wklepie w konsolę
-}
-
-bool istnieje(string sciezkaPliku)
-{
-	ifstream plik;
-	plik.open(sciezkaPliku.c_str()); //
-
-	return bool(plik);
-}
-
-vector<int> uzyskajKlucz(string nazwaKlucza)
-{
-	ifstream klucz; //klucz jest klasą do operowania na pliku
-
-	vector<int> kluczInt;
-	vector<char> kluczChar;
-
-	klucz.open(nazwaKlucza); //operujemy na pliku o nazwie zapisanej w zmiennej nazwaKlucza
-	char kluczChar_data;
-	klucz >> kluczChar_data;
-
-	while (!klucz.eof()) //dopóki nie skończy się plik...
-	{
-		kluczChar.push_back(toupper(kluczChar_data)); //push_back dodaje nowy element na koniec vectora, toupper robi CAPS na każdej literce
-		klucz >> kluczChar_data;
-	}
-
-	klucz.close();
-
-	for (int i{}; i < kluczChar.size(); i++)
-	{
-		kluczInt.push_back((int)kluczChar[i] - 65);
-	}
-
-	return kluczInt;
-}
-
-void dekodowanieZkluczem(string nazwaInput, string nazwaKlucza, string nazwaOutput)
-{
-	ifstream wejscie;
-	ofstream wyjscie;
-
-	vector<int> kluczInt = uzyskajKlucz(nazwaKlucza);
-	int klucz_length = kluczInt.size();
-
-	wejscie.open(nazwaInput);
-	wyjscie.open(nazwaOutput);
-
-	char aktualnyZnak;
-	int aktualnyIndeks = 0;
-	int aktualnyZnakAscii;
-
-	while (wejscie >> noskipws >> aktualnyZnak)
-	{
-		if (isalpha(aktualnyZnak))
-		{
-			int wspolczynnikPrzesuniecia = aktualnyIndeks % klucz_length;
-			char przesunietyZnak = ((int)toupper(aktualnyZnak) - kluczInt[wspolczynnikPrzesuniecia]);
-			if (przesunietyZnak < 65)
-			{
-				wyjscie << char(przesunietyZnak + 26);
-				aktualnyIndeks += 1;
-			}
-			else
-			{
-				wyjscie << char(przesunietyZnak);
-				aktualnyIndeks += 1;
-			}
-		}
-		else
-		{
-			wyjscie << aktualnyZnak;
-		}
-	}
-
-	aktualnyIndeks = 0;
-
-	wejscie.close();
-	wyjscie.close();
-}
-
-void kodowanie(string nazwaInput, string nazwaKlucza, string nazwaOutput)
-{
-	ifstream wejscie;
-	ofstream wyjscie;
-
-	vector<int> kluczInt = uzyskajKlucz(nazwaKlucza);
-	int klucz_length = kluczInt.size();
-
-	wejscie.open(nazwaInput);
-	wyjscie.open(nazwaOutput);
-
-	char aktualnyZnak;
-	int aktualnyIndeks = 0;
-	int aktualnyZnakAscii;
-	int nowaPozycja;
-
-	while (wejscie >> noskipws >> aktualnyZnak)
-	{
-		if (isalpha(aktualnyZnak)) //isalpha sprawdza czy znak jest literką z alfabetu
-		{
-			aktualnyZnakAscii = (int)toupper(aktualnyZnak);
-			int wspolczynnikPrzesuniecia = aktualnyIndeks % klucz_length;
-
-			nowaPozycja = ((aktualnyZnakAscii + kluczInt[wspolczynnikPrzesuniecia]) - 65) % 26;
-			char przesunietyZnak = char(nowaPozycja + 65);
-
-			wyjscie << przesunietyZnak;
-			aktualnyIndeks += 1;
-		}
-		else { wyjscie << aktualnyZnak; }
-
-	}
-	wejscie.close();
-	wyjscie.close();
-}
-
-void dwaPliki(string nazwaPliku1, string nazwaPliku2, string nazwaPliku3)
-{
-	ifstream in1(nazwaPliku1);
-	ifstream in2(nazwaPliku2);
-	ofstream out(nazwaPliku3);
-	string line;
-
-	while (getline(in1, line))
-	{
-		out << line << " ";
-	}
-
-	cout << " ";
-
-	while (getline(in2, line))
-	{
-		out << line << " ";
-	}
 }
 
 int main(int argi, char* argj[])
@@ -198,11 +55,6 @@ int main(int argi, char* argj[])
 	napis();
 	
 	elementy konsola(argi, argj);
-
-	if (konsola.lacz)
-	{
-		dwaPliki(konsola.nazwaPliku1, konsola.nazwaPliku2, konsola.nazwaPliku3);
-	}
 
 	if	((konsola.odszyfrowywanie && konsola.szyfrowanie && konsola.lacz) || (!konsola.odszyfrowywanie && !konsola.szyfrowanie && !konsola.lacz))
 	{
@@ -216,9 +68,13 @@ int main(int argi, char* argj[])
 	}
 	else { cout << "Wykonano!"; }
 
-	if (konsola.szyfrowanie)
+	if (konsola.lacz)
 	{
-		
+		dwaPliki(konsola.nazwaPliku1, konsola.nazwaPliku2, konsola.nazwaPliku3);
+	}
+	else if (konsola.szyfrowanie)
+	{
+
 		kodowanie(konsola.nazwaInput, konsola.nazwaKlucza, konsola.nazwaOutput);
 	}
 	else if (konsola.odszyfrowywanie)
