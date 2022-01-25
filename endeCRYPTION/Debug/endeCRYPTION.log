@@ -1,2 +1,6 @@
 ﻿  endeCRYPTION.cpp
+  funkcje.cpp
+C:\Users\barti\Documents\endeCRYPTION\endeCRYPTION\funkcje.cpp(35,18): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\barti\Documents\endeCRYPTION\endeCRYPTION\funkcje.cpp(56,6): warning C4101: "aktualnyZnakAscii": lokalna zmienna, do której nie istnieje odwołanie
+  Generowanie kodu...
   endeCRYPTION.vcxproj -> C:\Users\barti\Documents\endeCRYPTION\Debug\endeCRYPTION.exe

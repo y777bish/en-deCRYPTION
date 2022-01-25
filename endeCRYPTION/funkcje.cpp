@@ -8,25 +8,25 @@ using namespace std;
 bool istnieje(string sciezkaPliku)
 {
 	ifstream plik;
-	plik.open(sciezkaPliku.c_str()); //
+	plik.open(sciezkaPliku.c_str());
 
 	return bool(plik);
 }
 
 vector<int> uzyskajKlucz(string nazwaKlucza)
 {
-	ifstream klucz; //klucz jest klas¹ do operowania na pliku
+	ifstream klucz;
 
 	vector<int> kluczInt;
 	vector<char> kluczChar;
 
-	klucz.open(nazwaKlucza); //operujemy na pliku o nazwie zapisanej w zmiennej nazwaKlucza
+	klucz.open(nazwaKlucza);
 	char kluczChar_data;
 	klucz >> kluczChar_data;
 
-	while (!klucz.eof()) //dopóki nie skoñczy siê plik...
+	while (!klucz.eof())
 	{
-		kluczChar.push_back(toupper(kluczChar_data)); //push_back dodaje nowy element na koniec vectora, toupper robi CAPS na ka¿dej literce
+		kluczChar.push_back(toupper(kluczChar_data));
 		klucz >> kluczChar_data;
 	}
 
@@ -102,7 +102,7 @@ void kodowanie(string nazwaInput, string nazwaKlucza, string nazwaOutput)
 
 	while (wejscie >> noskipws >> aktualnyZnak)
 	{
-		if (isalpha(aktualnyZnak)) //isalpha sprawdza czy znak jest literk¹ z alfabetu
+		if (isalpha(aktualnyZnak))
 		{
 			aktualnyZnakAscii = (int)toupper(aktualnyZnak);
 			int wspolczynnikPrzesuniecia = aktualnyIndeks % klucz_length;
