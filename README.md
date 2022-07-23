@@ -4,7 +4,7 @@ This is my final project for first semester. Documentation is in "Doc/*.pdf".
 
 ## Details
 
-In this project I focused on creating console program which allows you to encrypt or decrypt .txt files using [Vigenere cipher](https://curvefever.pro/)
+In this project I focused on creating console program which allows you to encrypt or decrypt .txt files using [Vigenere cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)
 Program is really simple to handle, you only need few commands.
 
 ## How it works?
